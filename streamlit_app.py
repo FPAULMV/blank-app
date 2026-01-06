@@ -1,6 +1,12 @@
 import streamlit as st
+import pandas as pd
 
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
-)
+st.title("Conversor CSV a XML")
+archivo_csv = st.file_uploader("Sube tu CSV")
+archivo_xsd = st.file_uploader("Sube el XSD (opcional)")
+
+if archivo_csv:
+    df = pd.read_csv(archivo_csv)
+    # Tu lógica de conversión aquí
+    xml_resultado = convertir(df)
+    st.download_button("Descargar XML", xml_resultado)
